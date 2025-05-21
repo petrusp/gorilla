@@ -1,5 +1,5 @@
 from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
-import os
+from overrides import override
 
 class LlamaHandler_3_1_TestModel(LlamaHandler_3_1):
     """
