@@ -14,6 +14,10 @@ class LlamaHandler_3_1_TestModel(LlamaHandler_3_1):
         if self._model_name_huggingface_cache is None:
             self._model_name_huggingface_cache = self._query_model_name()
         return self._model_name_huggingface_cache
+    
+    @model_name_huggingface.setter
+    def model_name_huggingface(self, value):
+        self._model_name_huggingface_cache = value
         
     def _query_model_name(self):
         import requests
