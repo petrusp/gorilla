@@ -1,5 +1,4 @@
 from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
-from overrides import override
 
 class LlamaHandler_3_1_TestModel(LlamaHandler_3_1):
     """
@@ -12,24 +11,33 @@ class LlamaHandler_3_1_TestModel(LlamaHandler_3_1):
         # Flag for lazy loading
         self._model_queried = False
         
-    # Override the batch_inference method to ensure the model name is loaded
-    @override
-    def batch_inference(self, *args, **kwargs):
-        # Lazy-load the model name before the first inference
-        if not self._model_queried:
+    # Use descriptor protocol to intercept model_name_huggingface access
+    # This will be triggered whenever the batch_inference method or any other method
+    # accesses the model_name_huggingface attribute
+    
+    # Override __getattribute__ to intercept attribute access
+    def __getattribute__(self, name):
+        # First get the attribute using the standard method
+        attr = super().__getattribute__(name)
+        
+        # If we're accessing model_name_huggingface and haven't queried yet, do the lazy loading
+        if name == 'model_name_huggingface' and not super().__getattribute__('_model_queried'):
             try:
+                # Set the flag first to prevent infinite recursion
+                object.__setattr__(self, '_model_queried', True)
+                # Query the model name
                 model_name = self._query_model_name()
                 # Only update if we got a valid result
                 if model_name:
-                    # Direct attribute access to avoid property issues
-                    self.__dict__['model_name_huggingface'] = model_name
-                self._model_queried = True
+                    # Update the attribute directly in __dict__ to bypass any property issues
+                    object.__setattr__(self, 'model_name_huggingface', model_name)
+                    # Get the updated value
+                    return super().__getattribute__(name)
             except Exception as e:
                 print(f"Error querying model name: {e}, using default value")
-                self._model_queried = True
         
-        # Continue with the original method
-        return super().batch_inference(*args, **kwargs)
+        # Return the attribute
+        return attr
     
     def _query_model_name(self):
         import requests
