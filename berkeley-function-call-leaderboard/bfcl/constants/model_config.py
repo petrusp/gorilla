@@ -880,7 +880,7 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "/cache/climategpt_8b_test": ModelConfig(
+    "/cache/climategpt-8b-test": ModelConfig(
         model_name="/cache/climategpt_8b_test",
         display_name="ClimateGPT-8B-Test",
         url="",
