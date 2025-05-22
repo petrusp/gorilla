@@ -901,7 +901,7 @@ local_inference_model_map = {
         model_handler=LlamaHandler_3_1_TestModel_Handler,
         input_price=None,
         output_price=None,
-        is_fc_model=True,
+        is_fc_model=False,
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
