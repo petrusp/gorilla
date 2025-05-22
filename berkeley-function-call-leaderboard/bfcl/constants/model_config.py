@@ -880,6 +880,18 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "/cache/llama-3.1-test-model-FC": ModelConfig(
+        model_name="/cache/llama-3.1-test-model-FC",
+        display_name="Llama-3.1-Test-Model-FC",
+        url="",
+        org="   ",
+        license="",
+        model_handler=LlamaHandler_3_1_TestModel_Handler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "/cache/llama-3.1-test-model": ModelConfig(
         model_name="/cache/llama-3.1-test-model",
         display_name="Llama-3.1-Test-Model",
