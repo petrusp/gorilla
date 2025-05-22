@@ -45,7 +45,7 @@ from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaH
 from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.api_inference.qwq import QwenAPIHandler
-from bfcl.model_handler.local_inference.climategpt_test import ClimateGPT_Test_Handler
+from bfcl.model_handler.local_inference.llama_3_1_test_model import LlamaHandler_3_1_TestModel_Handler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -880,17 +880,17 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "/cache/climategpt-8b-test": ModelConfig(
-        model_name="/cache/climategpt_8b_test",
-        display_name="ClimateGPT-8B-Test",
+    "/cache/Llama-3.1-Test-Model": ModelConfig(
+        model_name="/cache/llama-3.1-test-model",
+        display_name="Llama-3.1-Test-Model",
         url="",
         org="   ",
         license="",
-        model_handler=ClimateGPT_Test_Handler,
+        model_handler=LlamaHandler_3_1_TestModel_Handler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
-        underscore_to_dot=True,
+        underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-8B-Instruct-FC",
