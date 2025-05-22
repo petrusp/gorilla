@@ -880,7 +880,7 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "/cache/Llama-3.1-Test-Model": ModelConfig(
+    "/cache/llama-3.1-test-model": ModelConfig(
         model_name="/cache/llama-3.1-test-model",
         display_name="Llama-3.1-Test-Model",
         url="",
