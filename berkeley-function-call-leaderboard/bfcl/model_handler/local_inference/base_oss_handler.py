@@ -108,15 +108,16 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
         config = AutoConfig.from_pretrained(**load_kwargs)
 
-        if hasattr(config, "max_position_embeddings"):
-            self.max_context_length = config.max_position_embeddings
-        elif self.tokenizer.model_max_length is not None:
-            self.max_context_length = self.tokenizer.model_max_length
-        else:
-            if not hasattr(self, "max_context_length"):
-                raise ValueError(
-                    "Model does not have a max_position_embeddings attribute or tokenizer.model_max_length attribute. Please set the max_context_length attribute in the corresponding model handler."
-                )
+        if self.max_context_length is None:
+            if hasattr(config, "max_position_embeddings"):
+                self.max_context_length = config.max_position_embeddings
+            elif self.tokenizer.model_max_length is not None:
+                self.max_context_length = self.tokenizer.model_max_length
+            else:
+                if not hasattr(self, "max_context_length"):
+                    raise ValueError(
+                        "Model does not have a max_position_embeddings attribute or tokenizer.model_max_length attribute. Please set the max_context_length attribute in the corresponding model handler."
+                    )
         print(f"Max context length: {self.max_context_length}")
 
         if not skip_server_setup:

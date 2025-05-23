@@ -91,6 +91,9 @@ class ModelConfig:
     # True if this model does not allow '.' in function names
     underscore_to_dot: bool = False
 
+    # Max context length for the model
+    max_context_length: Optional[int] = None
+
 
 # Inference through API calls
 api_inference_model_map = {
@@ -890,6 +893,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        max_context_length=8192,
     ),
     "/cache/llama-3.1-test-model": ModelConfig(
         model_name="/cache/llama-3.1-test-model",
@@ -902,6 +906,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        max_context_length=8192,
     ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-8B-Instruct-FC",
