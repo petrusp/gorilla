@@ -17,9 +17,10 @@ class LlamaHandler(OSSHandler):
     As a result, we will not have separate "prompt mode" for Llama models to avoid confusion.
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name, temperature, max_context_length) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
+        self.max_context_length = max_context_length
 
     @override
     def _format_prompt(self, messages, function):

@@ -64,7 +64,8 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
+    max_context_length = MODEL_CONFIG_MAPPING[model_name].max_context_length
+    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature, max_context_length)
     return handler
 
 
