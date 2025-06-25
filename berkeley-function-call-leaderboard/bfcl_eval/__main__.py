@@ -287,7 +287,7 @@ def scores(
         "Model",
         "Overall Acc",
         "Non-Live AST Acc",
-        "Non-Live Exec Acc",
+        "Non-Live Simple AST",
         "Live Acc",
         "Multi Turn Acc",
         "Relevance Detection",
